@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>God of War - Detalhes do Personagem</title>
+    
+    <!-- Bootstrap 5 via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS customizado -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="details-page">
+    <!-- NAVBAR / HEADER -->
+    <header class="navbar-section">
+        <nav class="navbar navbar-dark navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                    <i class="fas fa-crown"></i>
+                    <span>GOD OF WAR</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">
+                                <i class="fas fa-arrow-left"></i> Voltar
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- LOADING SPINNER -->
+    <div id="loadingSpinner" class="loading-container">
+        <div class="spinner">
+            <div class="spinner-circle"></div>
+            <p class="spinner-text">Carregando personagem...</p>
+        </div>
+    </div>
+
+    <!-- ERROR MESSAGE -->
+    <div id="errorMessage" class="error-container d-none">
+        <div class="error-box">
+            <i class="fas fa-exclamation-circle error-icon"></i>
+            <h3>Personagem não encontrado</h3>
+            <p id="errorText">Desculpe, não foi possível carregar as informações do personagem.</p>
+            <a href="index.html" class="btn btn-danger">
+                <i class="fas fa-arrow-left"></i> Voltar para Personagens
+            </a>
+        </div>
+    </div>
+
+    <!-- DETAILS CONTAINER -->
+    <div id="detailsContainer" class="details-container d-none">
+        
+        <!-- HERO BACKGROUND -->
+        <section class="details-hero">
+            <div class="hero-background">
+                <img id="heroImage" src="" alt="Personagem" class="hero-image">
+                <div class="hero-gradient"></div>
+            </div>
+            
+            <div class="hero-info">
+                <div class="container-fluid">
+                    <h1 id="characterName" class="character-hero-name">Carregando...</h1>
+                    <p id="characterShortInfo" class="character-short-info">Desconhecido</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MAIN CONTENT -->
+        <main class="details-main">
+            <div class="container-fluid">
+                <!-- DESCRIPTION SECTION -->
+                <section class="details-section">
+                    <h2 class="section-title">Sobre o Personagem</h2>
+                    <div class="section-content">
+                        <p id="characterDescription" class="character-full-description">
+                            Carregando descrição...
+                        </p>
+                    </div>
+                </section>
+
+                <!-- BIOGRAPHICAL INFO -->
+                <section class="details-section">
+                    <h2 class="section-title">Informações Biográficas</h2>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <div class="info-header">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="info-title">Origem</span>
+                            </div>
+                            <p id="info-birthplace" class="info-text">Desconhecido</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-header">
+                                <i class="fas fa-globe"></i>
+                                <span class="info-title">Nacionalidade</span>
+                            </div>
+                            <p id="info-nationality" class="info-text">Desconhecido</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-header">
+                                <i class="fas fa-calendar"></i>
+                                <span class="info-title">Idade</span>
+                            </div>
+                            <p id="info-age" class="info-text">Desconhecido</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-header">
+                                <i class="fas fa-heart"></i>
+                                <span class="info-title">Status</span>
+                            </div>
+                            <p id="info-status" class="info-text">Desconhecido</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PHYSICAL INFO -->
+                <section class="details-section">
+                    <h2 class="section-title">Características Físicas</h2>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <div class="info-header">
+                                <i class="fas fa-users"></i>
+                                <span class="info-title">Raça</span>
+                            </div>
+                            <p id="info-race" class="info-text">Desconhecido</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-header">
+                                <i class="fas fa-person"></i>
+                                <span class="info-title">Gênero</span>
+                            </div>
+                            <p id="info-gender" class="info-text">Desconhecido</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-header">
+                                <i class="fas fa-ruler"></i>
+                                <span class="info-title">Altura</span>
+                            </div>
+                            <p id="info-height" class="info-text">Desconhecido</p>
+                        </div>
+                        
+                        <div class="info-card">
+                            <div class="info-header">
+                                <i class="fas fa-circle"></i>
+                                <span class="info-title">Cor da Pele</span>
+                            </div>
+                            <p id="info-skin" class="info-text">Desconhecido</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- LOCATION INFO -->
+                <section class="details-section" id="locationSection">
+                    <h2 class="section-title">Localização</h2>
+                    <div class="location-list" id="locationList">
+                        <!-- Preenchido dinamicamente -->
+                    </div>
+                </section>
+
+                <!-- ADDITIONAL INFO -->
+                <section class="details-section" id="deathplaceSection">
+                    <h2 class="section-title">Informações Adicionais</h2>
+                    <div class="location-list" id="deathplaceList">
+                        <!-- Preenchido dinamicamente -->
+                    </div>
+                </section>
+
+                <!-- ACTIONS -->
+                <section class="details-section details-actions">
+                    <a href="index.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-arrow-left"></i> Voltar para Personagens
+                    </a>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <p>&copy; 2025 God of War Characters API. Dados fornecidos por <a href="https://god-of-war-api.onrender.com/" target="_blank">God of War API</a></p>
+                    <p class="footer-author">Desenvolvido como atividade escolar - Desenvolvimento Web</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Script para página de detalhes -->
+    <script src="js/detalhes.js"></script>
+</body>
+</html>
