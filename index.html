@@ -106,6 +106,173 @@
         </div>
     </section>
 
+    <!-- DETAILS SECTION -->
+    <section id="detailsSection" class="details-page d-none">
+        <!-- HEADER COM BOTÃO VOLTAR -->
+        <header class="navbar-section navbar-details">
+            <nav class="navbar navbar-dark navbar-expand-lg">
+                <div class="container-fluid">
+                    <button class="btn btn-link navbar-back" id="backBtn">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </button>
+                </div>
+            </nav>
+        </header>
+
+        <!-- LOADING SPINNER -->
+        <div id="detailsLoadingSpinner" class="loading-container">
+            <div class="spinner">
+                <div class="spinner-circle"></div>
+                <p class="spinner-text">Carregando personagem...</p>
+            </div>
+        </div>
+
+        <!-- ERROR MESSAGE -->
+        <div id="detailsErrorMessage" class="error-container d-none">
+            <div class="error-box">
+                <i class="fas fa-exclamation-circle error-icon"></i>
+                <h3>Personagem não encontrado</h3>
+                <p id="detailsErrorText">Desculpe, não foi possível carregar as informações do personagem.</p>
+                <button id="detailsBackBtn" class="btn btn-danger">
+                    <i class="fas fa-arrow-left"></i> Voltar para Personagens
+                </button>
+            </div>
+        </div>
+
+        <!-- DETAILS CONTAINER -->
+        <div id="detailsContainer" class="details-container d-none">
+            
+            <!-- HERO BACKGROUND -->
+            <section class="details-hero">
+                <div class="hero-background">
+                    <img id="heroImage" src="" alt="Personagem" class="hero-image">
+                    <div class="hero-gradient"></div>
+                </div>
+                
+                <div class="hero-info">
+                    <div class="container-fluid">
+                        <h1 id="characterName" class="character-hero-name">Carregando...</h1>
+                        <p id="characterShortInfo" class="character-short-info">Desconhecido</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MAIN CONTENT -->
+            <main class="details-main">
+                <div class="container-fluid">
+                    <!-- DESCRIPTION SECTION -->
+                    <section class="details-section">
+                        <h2 class="section-title">Sobre o Personagem</h2>
+                        <div class="section-content">
+                            <p id="characterDescription" class="character-full-description">
+                                Carregando descrição...
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- BIOGRAPHICAL INFO -->
+                    <section class="details-section">
+                        <h2 class="section-title">Informações Biográficas</h2>
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <div class="info-header">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <span class="info-title">Origem</span>
+                                </div>
+                                <p id="info-birthplace" class="info-text">Desconhecido</p>
+                            </div>
+                            
+                            <div class="info-card">
+                                <div class="info-header">
+                                    <i class="fas fa-globe"></i>
+                                    <span class="info-title">Nacionalidade</span>
+                                </div>
+                                <p id="info-nationality" class="info-text">Desconhecido</p>
+                            </div>
+                            
+                            <div class="info-card">
+                                <div class="info-header">
+                                    <i class="fas fa-calendar"></i>
+                                    <span class="info-title">Idade</span>
+                                </div>
+                                <p id="info-age" class="info-text">Desconhecido</p>
+                            </div>
+                            
+                            <div class="info-card">
+                                <div class="info-header">
+                                    <i class="fas fa-heart"></i>
+                                    <span class="info-title">Status</span>
+                                </div>
+                                <p id="info-status" class="info-text">Desconhecido</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- PHYSICAL INFO -->
+                    <section class="details-section">
+                        <h2 class="section-title">Características Físicas</h2>
+                        <div class="info-grid">
+                            <div class="info-card">
+                                <div class="info-header">
+                                    <i class="fas fa-users"></i>
+                                    <span class="info-title">Raça</span>
+                                </div>
+                                <p id="info-race" class="info-text">Desconhecido</p>
+                            </div>
+                            
+                            <div class="info-card">
+                                <div class="info-header">
+                                    <i class="fas fa-person"></i>
+                                    <span class="info-title">Gênero</span>
+                                </div>
+                                <p id="info-gender" class="info-text">Desconhecido</p>
+                            </div>
+                            
+                            <div class="info-card">
+                                <div class="info-header">
+                                    <i class="fas fa-ruler"></i>
+                                    <span class="info-title">Altura</span>
+                                </div>
+                                <p id="info-height" class="info-text">Desconhecido</p>
+                            </div>
+                            
+                            <div class="info-card">
+                                <div class="info-header">
+                                    <i class="fas fa-circle"></i>
+                                    <span class="info-title">Cor da Pele</span>
+                                </div>
+                                <p id="info-skin" class="info-text">Desconhecido</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- LOCATION INFO -->
+                    <section class="details-section" id="locationSection">
+                        <h2 class="section-title">Localização</h2>
+                        <div class="location-list" id="locationList">
+                            <!-- Preenchido dinamicamente -->
+                        </div>
+                    </section>
+
+                    <!-- ADDITIONAL INFO -->
+                    <section class="details-section" id="deathplaceSection">
+                        <h2 class="section-title">Informações Adicionais</h2>
+                        <div class="location-list" id="deathplaceList">
+                            <!-- Preenchido dinamicamente -->
+                        </div>
+                    </section>
+
+                    <!-- ACTIONS -->
+                    <section class="details-section details-actions">
+                        <button id="detailsBackBtn2" class="btn btn-primary btn-lg">
+                            <i class="fas fa-arrow-left"></i> Voltar para Personagens
+                        </button>
+                    </section>
+                </div>
+            </main>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="container">

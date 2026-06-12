@@ -16,6 +16,27 @@ const elementsDOM = {
     retryBtn: document.getElementById('retryBtn'),
     charactersSection: document.getElementById('charactersSection'),
     noResultsMessage: document.getElementById('noResultsMessage'),
+    // Elementos da página de detalhes
+    detailsSection: document.getElementById('detailsSection'),
+    detailsLoadingSpinner: document.getElementById('detailsLoadingSpinner'),
+    detailsErrorMessage: document.getElementById('detailsErrorMessage'),
+    detailsErrorText: document.getElementById('detailsErrorText'),
+    detailsContainer: document.getElementById('detailsContainer'),
+    heroImage: document.getElementById('heroImage'),
+    characterName: document.getElementById('characterName'),
+    characterShortInfo: document.getElementById('characterShortInfo'),
+    characterDescription: document.getElementById('characterDescription'),
+    infoBirthplace: document.getElementById('info-birthplace'),
+    infoNationality: document.getElementById('info-nationality'),
+    infoAge: document.getElementById('info-age'),
+    infoStatus: document.getElementById('info-status'),
+    infoRace: document.getElementById('info-race'),
+    infoGender: document.getElementById('info-gender'),
+    infoHeight: document.getElementById('info-height'),
+    infoSkin: document.getElementById('info-skin'),
+    locationList: document.getElementById('locationList'),
+    deathplaceList: document.getElementById('deathplaceList'),
+    backBtns: document.querySelectorAll('#backBtn, #detailsBackBtn, #detailsBackBtn2'),
 };
 
 // Estado da aplicação
@@ -352,8 +373,7 @@ function sanitizeHTML(text) {
 // FUNÇÃO: Navegação para página de detalhes
 // ========================================
 /**
- * Navega para a página de detalhes do personagem
- * Usa URLSearchParams para passar o ID do personagem
+ * Exibe os detalhes de um personagem na mesma página
  * @param {string} characterId - ID do personagem
  */
 function navigateToDetails(characterId) {
@@ -368,12 +388,114 @@ function navigateToDetails(characterId) {
         return;
     }
     
-    // Cria URLSearchParams com o nome do personagem
-    const params = new URLSearchParams();
-    params.append('id', character.name.toLowerCase().replace(/\s+/g, '_'));
+    // Esconde a seção de listagem e mostra a seção de detalhes
+    elementsDOM.charactersSection.classList.add('d-none');
+    elementsDOM.detailsSection.classList.remove('d-none');
     
-    // Navega para página de detalhes
-    window.location.href = `detalhes.html?${params.toString()}`;
+    // Carrega e exibe os detalhes
+    loadCharacterDetails(character);
+    
+    // Scroll para o topo
+    window.scrollTo(0, 0);
+}
+
+// ========================================
+// FUNÇÃO: Voltar para listagem
+// ========================================
+/**
+ * Volta para a tela de listagem de personagens
+ */
+function goBackToList() {
+    elementsDOM.detailsSection.classList.add('d-none');
+    elementsDOM.charactersSection.classList.remove('d-none');
+    
+    // Scroll para o topo
+    window.scrollTo(0, 0);
+}
+
+// ========================================
+// FUNÇÃO: Carregar e exibir detalhes do personagem
+// ========================================
+/**
+ * Carrega e exibe os detalhes completos de um personagem
+ * @param {Object} character - Objeto do personagem
+ */
+function loadCharacterDetails(character) {
+    // Mostra o spinner de carregamento
+    elementsDOM.detailsLoadingSpinner.classList.remove('d-none');
+    elementsDOM.detailsErrorMessage.classList.add('d-none');
+    elementsDOM.detailsContainer.classList.add('d-none');
+    
+    try {
+        // Extrai informações do personagem
+        const name = character.name || 'Desconhecido';
+        const description = character.description || 'Sem descrição disponível.';
+        const image = character.image || 'https://via.placeholder.com/400x400?text=Sem+Imagem';
+        
+        // Informações biográficas
+        const birthplace = character.biographicalInformation?.birthplace || 'Desconhecido';
+        const nationality = character.biographicalInformation?.nationality || 'Desconhecido';
+        const age = character.biographicalInformation?.age || 'Desconhecido';
+        const status = character.biographicalInformation?.status || 'Desconhecido';
+        
+        // Informações físicas
+        const race = character.physicalInformation?.race || 'Desconhecido';
+        const gender = character.physicalInformation?.gender || 'Desconhecido';
+        const height = character.physicalInformation?.height || 'Desconhecido';
+        const skinColor = character.physicalInformation?.skinColor || 'Desconhecido';
+        
+        // Preenche os elementos
+        elementsDOM.heroImage.src = image;
+        elementsDOM.heroImage.alt = name;
+        elementsDOM.heroImage.onerror = function() {
+            this.src = `https://via.placeholder.com/400x400?text=${encodeURIComponent(name)}`;
+        };
+        
+        elementsDOM.characterName.textContent = name;
+        elementsDOM.characterShortInfo.textContent = `${race} | ${gender}`;
+        elementsDOM.characterDescription.textContent = description;
+        
+        // Preenchendo informações biográficas
+        elementsDOM.infoBirthplace.textContent = birthplace;
+        elementsDOM.infoNationality.textContent = nationality;
+        elementsDOM.infoAge.textContent = age;
+        elementsDOM.infoStatus.textContent = status;
+        
+        // Preenchendo informações físicas
+        elementsDOM.infoRace.textContent = race;
+        elementsDOM.infoGender.textContent = gender;
+        elementsDOM.infoHeight.textContent = height;
+        elementsDOM.infoSkin.textContent = skinColor;
+        
+        // Preenchendo localizações se existirem
+        if (character.locations && character.locations.length > 0) {
+            let locationHTML = '';
+            character.locations.forEach(location => {
+                locationHTML += `<div class="location-item"><i class="fas fa-map-pin"></i> ${location}</div>`;
+            });
+            elementsDOM.locationList.innerHTML = locationHTML;
+        } else {
+            elementsDOM.locationList.innerHTML = '<p>Nenhuma localização registrada</p>';
+        }
+        
+        // Preenchendo deathplace se existir
+        if (character.deathPlace) {
+            elementsDOM.deathplaceList.innerHTML = `<div class="location-item"><i class="fas fa-skull"></i> ${character.deathPlace}</div>`;
+        } else {
+            elementsDOM.deathplaceList.innerHTML = '<p>Informação não disponível</p>';
+        }
+        
+        // Esconde o spinner e mostra o conteúdo
+        elementsDOM.detailsLoadingSpinner.classList.add('d-none');
+        elementsDOM.detailsContainer.classList.remove('d-none');
+        
+        console.log(`Detalhes carregados para: ${name}`);
+    } catch (error) {
+        console.error('Erro ao carregar detalhes:', error);
+        elementsDOM.detailsLoadingSpinner.classList.add('d-none');
+        elementsDOM.detailsErrorMessage.classList.remove('d-none');
+        elementsDOM.detailsErrorText.textContent = 'Erro ao carregar informações do personagem.';
+    }
 }
 
 // ========================================
@@ -394,6 +516,11 @@ elementsDOM.resetBtn.addEventListener('click', resetFilter);
 
 // Evento de clique no botão de retry
 elementsDOM.retryBtn.addEventListener('click', loadAllCharacters);
+
+// Event listeners para os botões de voltar
+elementsDOM.backBtns.forEach(btn => {
+    btn.addEventListener('click', goBackToList);
+});
 
 // ========================================
 // INICIALIZAÇÃO
